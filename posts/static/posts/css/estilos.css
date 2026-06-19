@@ -74,9 +74,11 @@ h2 {
     gap: 0.9rem;
     flex-wrap: wrap;
     margin-top: 1.75rem;
+    align-items: center;
 }
 
-.site-nav a {
+.site-nav a,
+.nav-button {
     display: inline-flex;
     align-items: center;
     padding: 0.8rem 1.2rem;
@@ -85,12 +87,25 @@ h2 {
     color: #fffaf5;
     text-decoration: none;
     font-weight: 700;
+    border: none;
+    font: inherit;
+    cursor: pointer;
     transition: transform 180ms ease, background-color 180ms ease;
 }
 
-.site-nav a:hover {
+.site-nav a:hover,
+.nav-button:hover {
     transform: translateY(-2px);
     background: var(--accent-dark);
+}
+
+.nav-greeting {
+    font-weight: 700;
+    color: var(--accent-dark);
+}
+
+.inline-form {
+    margin: 0;
 }
 
 .content-card {
@@ -242,6 +257,32 @@ textarea.form-control {
     gap: 0.75rem;
 }
 
+.profile-card {
+    padding: 1.2rem 1.4rem;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.62);
+    border: 1px solid rgba(86, 73, 55, 0.12);
+}
+
+.profile-image {
+    width: min(260px, 100%);
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 24px;
+    border: 1px solid rgba(86, 73, 55, 0.1);
+}
+
+.form-split {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.form-column {
+    display: grid;
+    gap: 0.8rem;
+}
+
 @media (max-width: 640px) {
     .page-shell {
         width: min(100% - 1rem, 960px);
@@ -263,6 +304,11 @@ textarea.form-control {
         width: 100%;
     }
 
+    .nav-button {
+        width: 100%;
+        justify-content: center;
+    }
+
     .post-actions {
         flex-direction: column;
     }
@@ -270,5 +316,9 @@ textarea.form-control {
     .action-link,
     .action-button {
         width: 100%;
+    }
+
+    .form-split {
+        grid-template-columns: 1fr;
     }
 }

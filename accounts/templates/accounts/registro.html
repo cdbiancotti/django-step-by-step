@@ -1,0 +1,31 @@
+{% extends 'posts/base.html' %}
+
+{% block title %}Registro | Blog Django{% endblock %}
+
+{% block content %}
+<section class="stack">
+    <p class="section-label">Nuevo usuario</p>
+    <h2>Crear cuenta</h2>
+    <p>Completa el formulario para registrarte y empezar a gestionar contenido.</p>
+</section>
+
+<form method="post" class="post-form-card">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="form-field">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% if field.help_text %}
+        <small class="help-text">{{ field.help_text|safe }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+        <p class="error-text">{{ error }}</p>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    <div class="post-actions">
+        <button class="action-button" type="submit">Registrarme</button>
+        <a class="action-link secondary-link" href="{% url 'accounts:login' %}">Ya tengo cuenta</a>
+    </div>
+</form>
+{% endblock %}

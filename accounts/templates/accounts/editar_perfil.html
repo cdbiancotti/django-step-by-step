@@ -1,0 +1,55 @@
+{% extends 'posts/base.html' %}
+
+{% block title %}Editar perfil | Blog Django{% endblock %}
+
+{% block content %}
+<section class="stack">
+    <p class="section-label">Configuracion de perfil</p>
+    <h2>Editar perfil</h2>
+    <p>Actualiza tus datos personales, tu biografia y tu imagen de perfil.</p>
+</section>
+
+<form method="post" enctype="multipart/form-data" class="post-form-card">
+    {% csrf_token %}
+
+    <div class="form-split">
+        <div class="form-column">
+            <p class="section-label">Datos de usuario</p>
+            {% for field in usuario_form %}
+            <div class="form-field">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% for error in field.errors %}
+                <p class="error-text">{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="form-column">
+            <p class="section-label">Perfil</p>
+            {% for field in perfil_form %}
+            <div class="form-field">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% for error in field.errors %}
+                <p class="error-text">{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% if request.user.perfil.imagen %}
+    <div class="form-preview">
+        <p class="section-label">Imagen actual</p>
+        <img class="profile-image" src="{{ request.user.perfil.imagen.url }}" alt="Imagen actual de {{ request.user.username }}">
+    </div>
+    {% endif %}
+
+    <div class="post-actions">
+        <button class="action-button" type="submit">Guardar cambios</button>
+        <a class="action-link secondary-link" href="{% url 'accounts:perfil' %}">Cancelar</a>
+    </div>
+</form>
+{% endblock %}

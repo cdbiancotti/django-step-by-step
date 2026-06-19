@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import PostForm
@@ -18,6 +19,7 @@ def post_detalle(request, pk):
     return render(request, "posts/post_detalle.html", {"post": post})
 
 
+@login_required
 def post_crear(request):
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
@@ -34,6 +36,7 @@ def post_crear(request):
     )
 
 
+@login_required
 def post_editar(request, pk):
     post = get_object_or_404(Post, pk=pk)
 
@@ -57,6 +60,7 @@ def post_editar(request, pk):
     )
 
 
+@login_required
 def post_eliminar(request, pk):
     post = get_object_or_404(Post, pk=pk)
 

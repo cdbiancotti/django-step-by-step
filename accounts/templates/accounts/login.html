@@ -1,0 +1,28 @@
+{% extends 'posts/base.html' %}
+
+{% block title %}Iniciar sesion | Blog Django{% endblock %}
+
+{% block content %}
+<section class="stack">
+    <p class="section-label">Acceso</p>
+    <h2>Iniciar sesion</h2>
+    <p>Entra con tu usuario para crear posts y administrar tu perfil.</p>
+</section>
+
+<form method="post" class="post-form-card">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="form-field">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% for error in field.errors %}
+        <p class="error-text">{{ error }}</p>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    <div class="post-actions">
+        <button class="action-button" type="submit">Ingresar</button>
+        <a class="action-link secondary-link" href="{% url 'accounts:registro' %}">Crear cuenta</a>
+    </div>
+</form>
+{% endblock %}

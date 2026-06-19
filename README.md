@@ -1,11 +1,11 @@
 # Blog Django
 
-Proyecto base de un blog web desarrollado con Django, ahora con CRUD completo de posts e imagenes opcionales.
+Proyecto base de un blog web desarrollado con Django, ahora con autenticacion, perfiles y CRUD de posts con imagenes.
 
 ## Descripcion
 
 Este repositorio contiene una version del blog conectada a SQLite y preparada para crear, listar, editar, ver y eliminar publicaciones desde la propia interfaz web.
-Incluye la aplicacion `posts`, panel administrativo, carga opcional de imagenes por post y estilos propios.
+Incluye autenticacion de usuarios, perfiles con biografia e imagen, carga opcional de imagenes por post y estilos propios.
 
 ## Instalacion
 
@@ -63,6 +63,12 @@ Crear un superusuario:
 python manage.py createsuperuser
 ```
 
+Registrar un usuario desde el sitio:
+
+- entrar a `/accounts/registro/`
+- completar el formulario
+- al finalizar se inicia sesion y se redirige al perfil
+
 Ejecutar el servidor de desarrollo:
 
 ```bash
@@ -86,6 +92,10 @@ Abrir en el navegador:
 - `/posts/<id>/`: detalle de cada publicacion.
 - `/posts/<id>/editar/`: edicion de publicaciones.
 - `/posts/<id>/eliminar/`: confirmacion y borrado.
+- `/accounts/login/`: inicio de sesion.
+- `/accounts/registro/`: registro de usuarios.
+- `/accounts/perfil/`: vista del perfil autenticado.
+- `/accounts/perfil/editar/`: edicion del perfil.
 
 ## CRUD disponible
 
@@ -98,6 +108,16 @@ Abrir en el navegador:
 ## Manejo de imagenes
 
 - El modelo `Post` usa `ImageField` con `upload_to='posts/'`.
+- El modelo `Perfil` usa `ImageField` con `upload_to='perfiles/'`.
 - Django guarda las imagenes en la carpeta `media/posts/`.
+- Django guarda las imagenes de perfil en `media/perfiles/`.
 - En desarrollo, las imagenes se sirven con `MEDIA_URL` y `MEDIA_ROOT`.
 - Para probar la carga, crea o edita un post desde `/posts/nuevo/` y selecciona una imagen antes de guardar.
+
+## Usuarios y vistas protegidas
+
+- El login usa el sistema nativo de autenticacion de Django.
+- El logout redirige al inicio.
+- Cada usuario tiene un `Perfil` asociado con biografia e imagen.
+- Las vistas protegidas son: crear post, editar post, eliminar post, ver perfil y editar perfil.
+- El listado y el detalle de posts siguen siendo publicos para visitantes anonimos.
