@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Blog Django{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'posts/css/estilos.css' %}">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <p class="eyebrow">Modulo 8 · Django</p>
+            <h1 class="brand">Blog en construccion</h1>
+            <p class="hero-copy">
+                Una primera version visual del proyecto para practicar rutas, views,
+                templates y archivos estaticos.
+            </p>
+            <nav class="site-nav">
+                <a href="{% url 'posts:inicio' %}">Inicio</a>
+                <a href="{% url 'posts:acerca' %}">Acerca de</a>
+            </nav>
+        </header>
+
+        <main class="content-card">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</body>
+</html>

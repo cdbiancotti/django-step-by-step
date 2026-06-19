@@ -1,11 +1,11 @@
 # Blog Django
 
-Proyecto base de un blog web desarrollado con Django.
+Proyecto base de un blog web desarrollado con Django, ahora con navegacion, templates HTML y CSS propio.
 
 ## Descripcion
 
-Este repositorio contiene la estructura inicial de un proyecto Django para construir un blog.
-Incluye la configuracion base del proyecto y una aplicacion llamada `posts`.
+Este repositorio contiene una primera version visual del blog.
+Incluye la configuracion base del proyecto, una aplicacion llamada `posts`, una pagina de inicio, una pagina "Acerca de" y estilos cargados desde archivos estaticos.
 
 ## Instalacion
 
@@ -58,3 +58,8 @@ Abrir en el navegador:
 ## Aplicacion principal
 
 - `posts`: aplicacion inicial para manejar las publicaciones del blog.
+
+## Paginas disponibles
+
+- `/`: pagina de inicio del blog.
+- `/acerca/`: pagina con informacion del autor y el objetivo del sitio.
