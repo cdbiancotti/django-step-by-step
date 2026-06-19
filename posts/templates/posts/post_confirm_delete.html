@@ -1,0 +1,22 @@
+{% extends 'posts/base.html' %}
+
+{% block title %}Eliminar post | Blog Django{% endblock %}
+
+{% block content %}
+<section class="stack">
+    <p class="section-label">Confirmacion de borrado</p>
+    <h2>Eliminar "{{ post.titulo }}"</h2>
+    <p>
+        Esta accion quitara el post del listado principal. Antes de continuar,
+        confirma que realmente queres eliminarlo.
+    </p>
+</section>
+
+<form method="post" class="post-form-card">
+    {% csrf_token %}
+    <div class="post-actions">
+        <button class="action-button danger-button" type="submit">Confirmar eliminacion</button>
+        <a class="action-link secondary-link" href="{% url 'posts:detalle' post.pk %}">Volver al detalle</a>
+    </div>
+</form>
+{% endblock %}

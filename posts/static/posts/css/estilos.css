@@ -134,6 +134,114 @@ h2 {
     font-style: italic;
 }
 
+.post-image,
+.detail-image {
+    width: 100%;
+    border-radius: 16px;
+    object-fit: cover;
+    border: 1px solid rgba(86, 73, 55, 0.1);
+}
+
+.post-image {
+    aspect-ratio: 16 / 9;
+    margin-bottom: 1rem;
+}
+
+.detail-image {
+    max-height: 420px;
+}
+
+.post-actions {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.action-link,
+.action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 1.15rem;
+    border-radius: 999px;
+    border: none;
+    background: var(--accent);
+    color: #fffaf5;
+    text-decoration: none;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 180ms ease, background-color 180ms ease;
+}
+
+.action-link:hover,
+.action-button:hover {
+    transform: translateY(-2px);
+    background: var(--accent-dark);
+}
+
+.secondary-link {
+    background: #d7c5b2;
+    color: var(--text);
+}
+
+.secondary-link:hover {
+    background: #c3af99;
+}
+
+.danger-link,
+.danger-button {
+    background: #a94438;
+}
+
+.danger-link:hover,
+.danger-button:hover {
+    background: #8d352b;
+}
+
+.post-form-card {
+    display: grid;
+    gap: 1rem;
+}
+
+.form-field {
+    display: grid;
+    gap: 0.45rem;
+}
+
+.form-field label {
+    font-weight: 700;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border-radius: 14px;
+    border: 1px solid rgba(86, 73, 55, 0.18);
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--text);
+    font: inherit;
+}
+
+textarea.form-control {
+    resize: vertical;
+}
+
+.help-text {
+    color: var(--muted);
+}
+
+.error-text {
+    margin: 0;
+    color: #8d352b;
+    font-weight: 700;
+}
+
+.form-preview {
+    display: grid;
+    gap: 0.75rem;
+}
+
 @media (max-width: 640px) {
     .page-shell {
         width: min(100% - 1rem, 960px);
@@ -152,6 +260,15 @@ h2 {
 
     .site-nav a {
         justify-content: center;
+        width: 100%;
+    }
+
+    .post-actions {
+        flex-direction: column;
+    }
+
+    .action-link,
+    .action-button {
         width: 100%;
     }
 }

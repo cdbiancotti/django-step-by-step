@@ -10,15 +10,16 @@
 <body>
     <div class="page-shell">
         <header class="hero">
-            <p class="eyebrow">Modulo 8 · Django</p>
-            <h1 class="brand">Blog en construccion</h1>
+            <p class="eyebrow">Modulo 10 | Django</p>
+            <h1 class="brand">Blog en crecimiento</h1>
             <p class="hero-copy">
-                Una primera version visual del proyecto para practicar rutas, views,
-                templates y archivos estaticos.
+                Ahora el sitio ya puede crear, mostrar, editar y eliminar publicaciones
+                desde su propia interfaz, incluyendo imagenes opcionales.
             </p>
             <nav class="site-nav">
                 <a href="{% url 'posts:inicio' %}">Inicio</a>
                 <a href="{% url 'posts:acerca' %}">Acerca de</a>
+                <a href="{% url 'posts:crear' %}">Nuevo post</a>
             </nav>
         </header>
 

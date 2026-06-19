@@ -1,0 +1,27 @@
+{% extends 'posts/base.html' %}
+
+{% block title %}{{ post.titulo }} | Blog Django{% endblock %}
+
+{% block content %}
+<article class="stack">
+    <p class="section-label">Detalle del post</p>
+    <h2>{{ post.titulo }}</h2>
+    <div class="post-meta">
+        <span>{{ post.get_estado_display }}</span>
+        <span>{{ post.fecha_creacion|date:"d/m/Y H:i" }}</span>
+    </div>
+    <p class="post-author">Por {{ post.autor }}</p>
+
+    {% if post.imagen %}
+    <img class="detail-image" src="{{ post.imagen.url }}" alt="Imagen de {{ post.titulo }}">
+    {% endif %}
+
+    <p>{{ post.contenido }}</p>
+
+    <div class="post-actions">
+        <a class="action-link" href="{% url 'posts:editar' post.pk %}">Editar</a>
+        <a class="action-link danger-link" href="{% url 'posts:eliminar' post.pk %}">Eliminar</a>
+        <a class="action-link secondary-link" href="{% url 'posts:inicio' %}">Volver al listado</a>
+    </div>
+</article>
+{% endblock %}

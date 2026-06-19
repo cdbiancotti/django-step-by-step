@@ -1,11 +1,11 @@
 # Blog Django
 
-Proyecto base de un blog web desarrollado con Django, ahora con navegacion, templates HTML y CSS propio.
+Proyecto base de un blog web desarrollado con Django, ahora con CRUD completo de posts e imagenes opcionales.
 
 ## Descripcion
 
-Este repositorio contiene una primera version visual del blog conectada a una base de datos SQLite.
-Incluye la configuracion base del proyecto, una aplicacion llamada `posts`, una pagina de inicio dinamica, una pagina "Acerca de", panel administrativo y estilos cargados desde archivos estaticos.
+Este repositorio contiene una version del blog conectada a SQLite y preparada para crear, listar, editar, ver y eliminar publicaciones desde la propia interfaz web.
+Incluye la aplicacion `posts`, panel administrativo, carga opcional de imagenes por post y estilos propios.
 
 ## Instalacion
 
@@ -45,6 +45,12 @@ Instalar dependencias:
 pip install -r requirements.txt
 ```
 
+Dependencia nueva para imagenes:
+
+```bash
+pip install Pillow
+```
+
 Aplicar migraciones:
 
 ```bash
@@ -76,3 +82,22 @@ Abrir en el navegador:
 - `/`: pagina de inicio del blog.
 - `/acerca/`: pagina con informacion del autor y el objetivo del sitio.
 - `/admin/`: panel de administracion para crear y gestionar posts.
+- `/posts/nuevo/`: formulario para crear posts.
+- `/posts/<id>/`: detalle de cada publicacion.
+- `/posts/<id>/editar/`: edicion de publicaciones.
+- `/posts/<id>/eliminar/`: confirmacion y borrado.
+
+## CRUD disponible
+
+- Crear posts desde la interfaz web.
+- Listar posts en la pagina principal.
+- Ver el detalle de cada post.
+- Editar publicaciones existentes.
+- Eliminar publicaciones con confirmacion previa.
+
+## Manejo de imagenes
+
+- El modelo `Post` usa `ImageField` con `upload_to='posts/'`.
+- Django guarda las imagenes en la carpeta `media/posts/`.
+- En desarrollo, las imagenes se sirven con `MEDIA_URL` y `MEDIA_ROOT`.
+- Para probar la carga, crea o edita un post desde `/posts/nuevo/` y selecciona una imagen antes de guardar.

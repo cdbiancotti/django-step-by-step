@@ -1,0 +1,39 @@
+{% extends 'posts/base.html' %}
+
+{% block title %}{{ page_title }} | Blog Django{% endblock %}
+
+{% block content %}
+<section class="stack">
+    <p class="section-label">Formulario de post</p>
+    <h2>{{ page_title }}</h2>
+    <p>Completa los datos del post y, si queres, subi una imagen destacada.</p>
+</section>
+
+<form method="post" enctype="multipart/form-data" class="post-form-card">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="form-field">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% if field.help_text %}
+        <small class="help-text">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+        <p class="error-text">{{ error }}</p>
+        {% endfor %}
+    </div>
+    {% endfor %}
+
+    {% if post and post.imagen %}
+    <div class="form-preview">
+        <p class="section-label">Imagen actual</p>
+        <img class="detail-image" src="{{ post.imagen.url }}" alt="Imagen actual de {{ post.titulo }}">
+    </div>
+    {% endif %}
+
+    <div class="post-actions">
+        <button class="action-button" type="submit">{{ submit_label }}</button>
+        <a class="action-link secondary-link" href="{% url 'posts:inicio' %}">Cancelar</a>
+    </div>
+</form>
+{% endblock %}

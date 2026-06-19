@@ -7,14 +7,17 @@
     <p class="section-label">Pagina de inicio</p>
     <h2>Bienvenidos a mi blog</h2>
     <p>
-        Estas publicaciones ya no viven en el HTML: se cargan desde la base de datos
-        usando el ORM de Django y pueden administrarse desde el panel `/admin/`.
+        Estas publicaciones ya se gestionan desde el propio sitio con un CRUD completo.
+        Cada post puede tener una imagen destacada y una pagina de detalle propia.
     </p>
 </section>
 
 <section class="posts-grid">
     {% for post in posts %}
     <article class="post-card">
+        {% if post.imagen %}
+        <img class="post-image" src="{{ post.imagen.url }}" alt="Imagen de {{ post.titulo }}">
+        {% endif %}
         <div class="post-meta">
             <span>{{ post.get_estado_display }}</span>
             <span>{{ post.fecha_creacion|date:"d/m/Y H:i" }}</span>
@@ -22,6 +25,11 @@
         <h3>{{ post.titulo }}</h3>
         <p class="post-author">Por {{ post.autor }}</p>
         <p>{{ post.contenido }}</p>
+        <div class="post-actions">
+            <a class="action-link" href="{% url 'posts:detalle' post.pk %}">Ver detalle</a>
+            <a class="action-link" href="{% url 'posts:editar' post.pk %}">Editar</a>
+            <a class="action-link danger-link" href="{% url 'posts:eliminar' post.pk %}">Eliminar</a>
+        </div>
     </article>
     {% empty %}
     <article class="post-card">
@@ -30,6 +38,7 @@
             Ingresa al panel de administracion para crear los primeros posts y verlos
             aparecer automaticamente en esta pagina.
         </p>
+        <a class="action-link" href="{% url 'posts:crear' %}">Crear el primer post</a>
     </article>
     {% endfor %}
 </section>

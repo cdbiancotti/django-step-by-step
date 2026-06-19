@@ -11,6 +11,7 @@ class Post(models.Model):
     contenido = models.TextField()
     autor = models.CharField(max_length=120)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
+    imagen = models.ImageField(upload_to="posts/", null=True, blank=True)
     estado = models.CharField(
         max_length=20,
         choices=Estado.choices,

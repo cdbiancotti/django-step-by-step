@@ -3,6 +3,7 @@ __pycache__/
 *.pyc
 .env
 db.sqlite3
+media/
 checkpoint*
 enunciado*
 entregas_pre_django/
