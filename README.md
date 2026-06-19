@@ -1,11 +1,25 @@
 # Blog Django
 
-Proyecto base de un blog web desarrollado con Django, ahora con autenticacion, perfiles y CRUD de posts con imagenes.
+Blog web desarrollado con Django como entrega final del recorrido de Python + Django. El proyecto integra publicaciones con imagen, autenticacion de usuarios, perfiles y rutas protegidas.
 
-## Descripcion
+## Tecnologias utilizadas
 
-Este repositorio contiene una version del blog conectada a SQLite y preparada para crear, listar, editar, ver y eliminar publicaciones desde la propia interfaz web.
-Incluye autenticacion de usuarios, perfiles con biografia e imagen, carga opcional de imagenes por post y estilos propios.
+- Python 3
+- Django 6
+- SQLite
+- Pillow
+- HTML
+- CSS
+
+## Funcionalidades principales
+
+- CRUD completo de posts desde la interfaz web.
+- Imagen opcional para cada publicacion.
+- Registro de usuarios.
+- Login y logout.
+- Perfil de usuario con biografia e imagen.
+- Proteccion de rutas sensibles con autenticacion.
+- Panel administrativo de Django.
 
 ## Instalacion
 
@@ -13,27 +27,22 @@ Clonar el repositorio:
 
 ```bash
 git clone URL_DEL_REPOSITORIO
-```
-
-Entrar a la carpeta del proyecto:
-
-```bash
 cd contenido
 ```
 
-Crear el entorno virtual:
+Crear entorno virtual:
 
 ```bash
 python -m venv venv
 ```
 
-Activar el entorno virtual en Windows PowerShell:
+Activarlo en Windows PowerShell:
 
 ```powershell
 .\venv\Scripts\Activate.ps1
 ```
 
-Activar el entorno virtual en Linux o macOS:
+Activarlo en Linux o macOS:
 
 ```bash
 source venv/bin/activate
@@ -45,11 +54,7 @@ Instalar dependencias:
 pip install -r requirements.txt
 ```
 
-Dependencia nueva para imagenes:
-
-```bash
-pip install Pillow
-```
+## Puesta en marcha
 
 Aplicar migraciones:
 
@@ -57,19 +62,13 @@ Aplicar migraciones:
 python manage.py migrate
 ```
 
-Crear un superusuario:
+Crear un superusuario si queres probar el admin:
 
 ```bash
 python manage.py createsuperuser
 ```
 
-Registrar un usuario desde el sitio:
-
-- entrar a `/accounts/registro/`
-- completar el formulario
-- al finalizar se inicia sesion y se redirige al perfil
-
-Ejecutar el servidor de desarrollo:
+Iniciar el servidor:
 
 ```bash
 python manage.py runserver
@@ -79,45 +78,50 @@ Abrir en el navegador:
 
 `http://127.0.0.1:8000/`
 
-## Aplicacion principal
+## Flujo principal para probar
 
-- `posts`: aplicacion inicial para manejar las publicaciones del blog.
+1. Entrar a `/accounts/registro/` y crear una cuenta.
+2. Confirmar que despues del registro se redirige a `/accounts/perfil/`.
+3. Editar biografia e imagen desde `/accounts/perfil/editar/`.
+4. Crear un post desde `/posts/nuevo/`.
+5. Ver el detalle, editarlo y eliminarlo.
+6. Cerrar sesion y comprobar que crear, editar o borrar posts redirige al login.
 
-## Paginas disponibles
+## Rutas principales
 
-- `/`: pagina de inicio del blog.
-- `/acerca/`: pagina con informacion del autor y el objetivo del sitio.
-- `/admin/`: panel de administracion para crear y gestionar posts.
-- `/posts/nuevo/`: formulario para crear posts.
-- `/posts/<id>/`: detalle de cada publicacion.
-- `/posts/<id>/editar/`: edicion de publicaciones.
-- `/posts/<id>/eliminar/`: confirmacion y borrado.
-- `/accounts/login/`: inicio de sesion.
-- `/accounts/registro/`: registro de usuarios.
-- `/accounts/perfil/`: vista del perfil autenticado.
-- `/accounts/perfil/editar/`: edicion del perfil.
-
-## CRUD disponible
-
-- Crear posts desde la interfaz web.
-- Listar posts en la pagina principal.
-- Ver el detalle de cada post.
-- Editar publicaciones existentes.
-- Eliminar publicaciones con confirmacion previa.
+- `/`: inicio con listado de posts.
+- `/acerca/`: pagina informativa.
+- `/posts/nuevo/`: crear post.
+- `/posts/<id>/`: detalle del post.
+- `/posts/<id>/editar/`: editar post.
+- `/posts/<id>/eliminar/`: eliminar post.
+- `/accounts/login/`: login.
+- `/accounts/registro/`: registro.
+- `/accounts/perfil/`: perfil autenticado.
+- `/accounts/perfil/editar/`: editar perfil.
+- `/admin/`: panel administrativo.
 
 ## Manejo de imagenes
 
-- El modelo `Post` usa `ImageField` con `upload_to='posts/'`.
-- El modelo `Perfil` usa `ImageField` con `upload_to='perfiles/'`.
-- Django guarda las imagenes en la carpeta `media/posts/`.
-- Django guarda las imagenes de perfil en `media/perfiles/`.
-- En desarrollo, las imagenes se sirven con `MEDIA_URL` y `MEDIA_ROOT`.
-- Para probar la carga, crea o edita un post desde `/posts/nuevo/` y selecciona una imagen antes de guardar.
+- `Post.imagen` se guarda en `media/posts/`.
+- `Perfil.imagen` se guarda en `media/perfiles/`.
+- En desarrollo, Django sirve archivos media con `MEDIA_URL` y `MEDIA_ROOT`.
+- Si el repositorio no incluye `media/`, podes recrear contenido subiendo nuevas imagenes desde los formularios.
 
-## Usuarios y vistas protegidas
+## Seguridad y archivos locales
 
-- El login usa el sistema nativo de autenticacion de Django.
-- El logout redirige al inicio.
-- Cada usuario tiene un `Perfil` asociado con biografia e imagen.
-- Las vistas protegidas son: crear post, editar post, eliminar post, ver perfil y editar perfil.
-- El listado y el detalle de posts siguen siendo publicos para visitantes anonimos.
+- El repositorio no incluye `venv/`, `db.sqlite3`, `media/` ni `.env`.
+- Las rutas protegidas son: crear post, editar post, eliminar post, ver perfil y editar perfil.
+- El listado y el detalle de posts siguen siendo publicos.
+
+## Tests basicos
+
+Ejecutar pruebas:
+
+```bash
+python manage.py test
+```
+
+## Autor
+
+- Cristian D. Biancotti

@@ -7,3 +7,5 @@ media/
 checkpoint*
 enunciado*
 entregas_pre_django/
+.DS_Store
+*.log
