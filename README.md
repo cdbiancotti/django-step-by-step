@@ -4,8 +4,8 @@ Proyecto base de un blog web desarrollado con Django, ahora con navegacion, temp
 
 ## Descripcion
 
-Este repositorio contiene una primera version visual del blog.
-Incluye la configuracion base del proyecto, una aplicacion llamada `posts`, una pagina de inicio, una pagina "Acerca de" y estilos cargados desde archivos estaticos.
+Este repositorio contiene una primera version visual del blog conectada a una base de datos SQLite.
+Incluye la configuracion base del proyecto, una aplicacion llamada `posts`, una pagina de inicio dinamica, una pagina "Acerca de", panel administrativo y estilos cargados desde archivos estaticos.
 
 ## Instalacion
 
@@ -45,6 +45,18 @@ Instalar dependencias:
 pip install -r requirements.txt
 ```
 
+Aplicar migraciones:
+
+```bash
+python manage.py migrate
+```
+
+Crear un superusuario:
+
+```bash
+python manage.py createsuperuser
+```
+
 Ejecutar el servidor de desarrollo:
 
 ```bash
@@ -63,3 +75,4 @@ Abrir en el navegador:
 
 - `/`: pagina de inicio del blog.
 - `/acerca/`: pagina con informacion del autor y el objetivo del sitio.
+- `/admin/`: panel de administracion para crear y gestionar posts.

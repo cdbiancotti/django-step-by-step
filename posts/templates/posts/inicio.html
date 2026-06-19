@@ -7,12 +7,30 @@
     <p class="section-label">Pagina de inicio</p>
     <h2>Bienvenidos a mi blog</h2>
     <p>
-        Este proyecto marca el paso desde una base tecnica de Django hacia un sitio
-        navegable con identidad visual, estructura HTML reutilizable y estilos propios.
+        Estas publicaciones ya no viven en el HTML: se cargan desde la base de datos
+        usando el ORM de Django y pueden administrarse desde el panel `/admin/`.
     </p>
-    <p>
-        La idea es usar este espacio para seguir construyendo un blog sobre aprendizaje,
-        practica con Python y el recorrido de desarrollo web con Django.
-    </p>
+</section>
+
+<section class="posts-grid">
+    {% for post in posts %}
+    <article class="post-card">
+        <div class="post-meta">
+            <span>{{ post.get_estado_display }}</span>
+            <span>{{ post.fecha_creacion|date:"d/m/Y H:i" }}</span>
+        </div>
+        <h3>{{ post.titulo }}</h3>
+        <p class="post-author">Por {{ post.autor }}</p>
+        <p>{{ post.contenido }}</p>
+    </article>
+    {% empty %}
+    <article class="post-card">
+        <h3>Aun no hay publicaciones</h3>
+        <p>
+            Ingresá al panel de administracion para crear los primeros posts y verlos
+            aparecer automaticamente en esta pagina.
+        </p>
+    </article>
+    {% endfor %}
 </section>
 {% endblock %}
